@@ -15,7 +15,7 @@ fi
 # Upload source code to the GCP
 echo "Deploying to GCP..."
 gcloud functions deploy \
-  ryanair_flightprice_tracker \
+  {{cookiecutter.project_slug}} \
   --project "{{cookiecutter.gcp_project_id}}" \
   --region "{{cookiecutter.gcp_region}}" \
   --entry-point=run_pipeline \
