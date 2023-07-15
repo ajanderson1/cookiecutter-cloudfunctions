@@ -9,7 +9,7 @@
     "gcp_project_id": "ajanderson1",
     "gcp_region": "europe-west2",
     "prod_env_file": ".env.prod.yaml",
-    "dev_env_file": ".env.dev.yaml",
+    "dev_env_file": ".env.dev",
     "build_env_file": ".env.build.yaml",
     "local_deployment_script": "deployment_scripts/deploy_local.sh",
     "deployment_script": "deployment_scripts/deploy.sh",
