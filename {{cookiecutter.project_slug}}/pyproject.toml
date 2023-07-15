@@ -30,8 +30,7 @@ include = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.10"
-python-dotenv == "^0.21.0"
+python = "^3.8"
 
 [tool.poetry.dev-dependencies]
 {% if cookiecutter.use_pytest == 'y' -%}
