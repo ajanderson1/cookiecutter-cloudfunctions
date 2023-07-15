@@ -33,10 +33,6 @@ poetry run black .
 poetry run mypy
 ```
 
-## Features
 
-* TODO
 
-## Credits
-
-This project was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and the [`askarthur/cookiecutter-cloudfunctions`](https://github.com/askarthur/cookiecutter-cloudfunctions/) project template.
+*This project was created with [Cookiecutter](https://github.com/audreyr/cookiecutter) and [ajanderson1/cookiecutter-cloudfunctions](https://github.com/ajanderson1/cookiecutter-cloudfunctions.git) (forked from [audreyr/cookiecutter-pypackage](https://github.com/askarthur/cookiecutter-cloudfunctions.git)
