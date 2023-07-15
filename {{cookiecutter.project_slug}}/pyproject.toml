@@ -33,6 +33,7 @@ include = [
 python = "^3.8"
 
 [tool.poetry.dev-dependencies]
+python-dotenv == "^0.21.0"
 {% if cookiecutter.use_pytest == 'y' -%}
 mock = "^4.0.0"
 pytest = "^6.0"
