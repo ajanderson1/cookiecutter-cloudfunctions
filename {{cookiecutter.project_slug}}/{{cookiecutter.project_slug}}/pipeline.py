@@ -1,3 +1,4 @@
+import os
 import dotenv
 import logging
 
@@ -9,8 +10,8 @@ logging.basicConfig(level=logging.INFO)
 log = logging.getLogger(__name__)
 
 
-"""Main module."""
-
 def main():
     """Main function."""
-    pass
+    log.info(f"{{cookiecutter.project_slug}}: {{cookiecutter.project_short_description}} is running...")
+    log.info(f"These are the environment variables: {os.environ}")
+    return "Success.", 200

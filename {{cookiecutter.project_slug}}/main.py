@@ -31,7 +31,7 @@ def run_pipeline(request: Any) -> str:
     message = request.get_json()
 
     # Open in request data as pipeline arguments
-    main(**message)
+    return main(**message)
 {% elif cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}
 def run_pipeline(event: Dict[str, Any], context: Context) -> None:
     """Triggered from a message written to a PubSub topic.
