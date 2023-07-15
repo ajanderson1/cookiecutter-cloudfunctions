@@ -24,8 +24,8 @@ gcloud functions deploy \
   --timeout=9m \
   --env-vars-file="{{cookiecutter.prod_env_file}}" \
   --allow-unauthenticated \
-  {% if cookiecutter.trigger_type == 'HTTP' -%}--trigger-http{% endif -%}
-  {% if cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}--trigger-topic="{{ cookiecutter.project_slug }}"{% endif -%}
+  {% if cookiecutter.trigger_type == 'HTTP' -%}--trigger-http \{% endif -%}
+  {% if cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}--trigger-topic="{{ cookiecutter.project_slug }}" \{% endif -%}
   {% if (cookiecutter.trigger_type == 'Cloud Storage') or (cookiecutter.trigger_type == 'Cloud Firestore') -%}
   --trigger-resource=YOUR_TRIGGER_RESOURCE \
   --trigger-event=YOUR_TRIGGER_EVENT \
