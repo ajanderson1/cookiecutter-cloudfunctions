@@ -18,7 +18,7 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
     # Exit to cancel project
     sys.exit(1)
 
-print(f" this is def trunning!!!!")
+
 def get_service_account_email(credentials_file_path):
     with open(credentials_file_path, 'r') as json_file:
         data = json.load(json_file)
@@ -32,13 +32,19 @@ def get_service_account_email(credentials_file_path):
 credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
 gcp_service_account_email = get_service_account_email(credentials_file_path)
 
-# Store the service account email in a Cookiecutter variable for use in the template.
-cookiecutter_config = '{{ cookiecutter }}'
-print()
-print()
-print(f"the cookiecutter_config is {cookiecutter_config}")
-print()
-cookiecutter_config['gcp_service_account_email'] = gcp_service_account_email
+
+import ast
+from collections import OrderedDict
+
+# Assuming cookiecutter_config is a string containing the ordered dictionary representation
+# e.g., cookiecutter_config = "OrderedDict([('full_name', 'AJ Anderson'), ...])"
+
+# Convert the string to an OrderedDict
+cookiecutter_config = "{{ cookiecutter }}"
+cookiecutter_config_ordered_dict = ast.literal_eval(cookiecutter_config)
+
+# Now cookiecutter_config_ordered_dict is an actual OrderedDict object
+print(type(cookiecutter_config_ordered_dict))  # <class 'collections.OrderedDict'>
 
 # Save the updated Cookiecutter configuration back to the file.
 with open('cookiecutter.json', 'w') as config_file:
