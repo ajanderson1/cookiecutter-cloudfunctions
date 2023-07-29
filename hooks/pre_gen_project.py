@@ -23,7 +23,6 @@ def get_service_account_email(credentials_file_path):
     """Get the service account email from the credentials file."""
     with open(credentials_file_path, 'r') as json_file:
         data = json.load(json_file)
-        raise Exception(f"The credentials file path is: {credentials_file_path}")
 
     if 'client_email' in data:
         return data['client_email']
