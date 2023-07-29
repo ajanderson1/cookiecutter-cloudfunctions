@@ -21,7 +21,7 @@
     "build_env_file": ".env.build.yaml",
     "local_deployment_script": "deployment_scripts/deploy_local.sh",
     "deployment_script": "deployment_scripts/deploy.sh",
-    "path_to_gcp_credentials": "credentials.json",
+    "path_to_gcp_credentials": "./credentials.json",
     "use_pytest": "y",
     "use_flake8": "y",
     "use_pylint": "n",
