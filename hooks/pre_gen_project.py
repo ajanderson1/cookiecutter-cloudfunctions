@@ -41,10 +41,14 @@ from collections import OrderedDict
 
 # Convert the string to an OrderedDict
 cookiecutter_config = "{{ cookiecutter }}"
-cookiecutter_config_ordered_dict = ast.literal_eval(cookiecutter_config)
 
-raise ValueError(cookiecutter_config_ordered_dict)
+# use literal_eval to safely parse the string into an actual OrderedDict object
+dict_str = cookiecutter_config.replace("OrderedDict", "")
+cookiecutter_config_ordered_dict = ast.literal_eval(dict_str)
+cookiecutter_config_dict = dict(cookiecutter_config_ordered_dict)
+
+# raise ValueError(cookiecutter_config_ordered_dict)
 
 # Save the updated Cookiecutter configuration back to the file.
 with open('cookiecutter.json', 'w') as config_file:
-    json.dump(cookiecutter_config, config_file)
+    json.dump(cookiecutter_config_dict, config_file)
