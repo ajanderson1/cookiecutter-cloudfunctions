@@ -20,6 +20,8 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
 
 
 def get_service_account_email(credentials_file_path):
+    """Get the service account email from the credentials file."""
+    raise Exception(f"The credentials file path is: {credentials_file_path}")
     with open(credentials_file_path, 'r') as json_file:
         data = json.load(json_file)
 
