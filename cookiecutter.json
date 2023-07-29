@@ -15,7 +15,7 @@
     "gcp_region": "europe-west2",
     "function_entry_point": "run_pipeline",
     "function_timeout": "360",
-    "function_memory": "256MB",
+    "function_memory": "256",
     "prod_env_file": ".env.prod.yaml",
     "dev_env_file": ".env.dev",
     "build_env_file": ".env.build.yaml",
