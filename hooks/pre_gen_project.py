@@ -31,7 +31,7 @@ def get_service_account_email(credentials_file_path):
         raise ValueError("Invalid credentials file. Could not find 'client_email' field.")
 
 # Path to the credentials JSON file provided by the user during Cookiecutter instantiation.
-credentials_file_path = '{{ cookiecutter.path_to_credentials_json }}'
+credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
 service_account_email = get_service_account_email(credentials_file_path)
 
 # Read the original Cookiecutter configuration as a template string.
