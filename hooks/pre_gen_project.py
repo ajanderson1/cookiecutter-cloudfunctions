@@ -1,6 +1,8 @@
 """Module to check inputs before project generation."""
 import re
 import sys
+import os
+import json
 
 
 MODULE_REGEX = r"^[_a-zA-Z][_a-zA-Z0-9]+$"
@@ -16,9 +18,6 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
     # Exit to cancel project
     sys.exit(1)
 
-import os
-import json
-from jinja2 import Template
 
 def get_service_account_email(credentials_file_path):
     with open(credentials_file_path, 'r') as json_file:
@@ -31,15 +30,12 @@ def get_service_account_email(credentials_file_path):
 
 # Path to the credentials JSON file provided by the user during Cookiecutter instantiation.
 credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
-service_account_email = get_service_account_email(credentials_file_path)
+gcp_service_account_email = get_service_account_email(credentials_file_path)
 
-# Read the original Cookiecutter configuration template.
-with open('cookiecutter.json', 'r') as config_template_file:
-    cookiecutter_config_template = config_template_file.read()
+# Store the service account email in a Cookiecutter variable for use in the template.
+cookiecutter_config = '{{ cookiecutter }}'
+cookiecutter_config['gcp_service_account_email'] = gcp_service_account_email
 
-# Render the template with the service_account_email variable.
-cookiecutter_config_rendered = Template(cookiecutter_config_template).render(service_account_email=service_account_email)
-
-# Save the rendered Cookiecutter configuration as the actual configuration file.
+# Save the updated Cookiecutter configuration back to the file.
 with open('cookiecutter.json', 'w') as config_file:
-    config_file.write(cookiecutter_config_rendered)
+    json.dump(cookiecutter_config, config_file)
