@@ -47,7 +47,8 @@ dict_str = cookiecutter_config.replace("OrderedDict", "")
 cookiecutter_config_ordered_dict = ast.literal_eval(dict_str)
 cookiecutter_config_dict = dict(cookiecutter_config_ordered_dict)
 
-# raise ValueError(cookiecutter_config_ordered_dict)
+# add the service account email to the cookiecutter config
+cookiecutter_config_dict['gcp_service_account_email'] = gcp_service_account_email
 
 # Save the updated Cookiecutter configuration back to the file.
 with open('cookiecutter.json', 'w') as config_file:
