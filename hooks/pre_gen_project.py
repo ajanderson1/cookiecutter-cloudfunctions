@@ -16,8 +16,10 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
     # Exit to cancel project
     sys.exit(1)
 
+
 import os
 import json
+from jinja2 import Template
 
 def get_service_account_email(credentials_file_path):
     with open(credentials_file_path, 'r') as json_file:
@@ -32,10 +34,13 @@ def get_service_account_email(credentials_file_path):
 credentials_file_path = '{{ cookiecutter.path_to_credentials_json }}'
 service_account_email = get_service_account_email(credentials_file_path)
 
-# Store the service account email in a Cookiecutter variable for use in the template.
-cookiecutter_config = '{{ cookiecutter | no_eval }}'
-cookiecutter_config = cookiecutter_config.replace('}}', ', "service_account_email": "' + service_account_email + '"}}')
+# Read the original Cookiecutter configuration as a template string.
+with open('cookiecutter.json', 'r') as config_file:
+    cookiecutter_config_template = config_file.read()
 
-# Save the updated Cookiecutter configuration back to the file.
+# Render the template with the service_account_email variable.
+cookiecutter_config_rendered = Template(cookiecutter_config_template).render(service_account_email=service_account_email)
+
+# Save the rendered Cookiecutter configuration back to the file.
 with open('cookiecutter.json', 'w') as config_file:
-    config_file.write(cookiecutter_config)
+    config_file.write(cookiecutter_config_rendered)
