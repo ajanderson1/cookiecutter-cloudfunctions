@@ -50,8 +50,14 @@ cookiecutter_config_dict = dict(cookiecutter_config_ordered_dict)
 # add the service account email to the cookiecutter config
 cookiecutter_config_dict['gcp_service_account_email'] = gcp_service_account_email
 
-raise ValueError(cookiecutter_config_dict)
+from cookiecutter.main import cookiecutter
 
-# Save the updated Cookiecutter configuration back to the file.
-with open('cookiecutter.json', 'w') as config_file:
-    json.dump(cookiecutter_config_dict, config_file)
+cookiecutter(
+    cookiecutter_config_dict['project_slug'],
+    no_input=True,
+    extra_context={'gcp_service_account_email': gcp_service_account_email}
+)
+
+# # Save the updated Cookiecutter configuration back to the file.
+# with open('cookiecutter.json', 'w') as config_file:
+#     json.dump(cookiecutter_config_dict, config_file)
