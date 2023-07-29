@@ -5,6 +5,17 @@ echo "Generating requirements.txt..."
 poetry install --no-interaction 
 poetry export --no-interaction --without-hashes --format requirements.txt --output requirements.txt
 
+
+# Remove all instances of '@HEAD' from the input file and save the result in the output file
+# Create a temporary file to store modified content
+temp_file=$(mktemp)
+# Remove all instances of '@HEAD' from requirements.txt and save the result in the temporary file
+sed 's/@HEAD//' requirements.txt > "$temp_file"
+# Overwrite the original requirements.txt with the content from the temporary file
+mv "$temp_file" requirements.txt
+echo "Instances of '@HEAD' removed."
+
+
 # Check existence of file with environment variables
 ENV_YAML_FILE="{{cookiecutter.prod_env_file}}"
 if [ ! -f "$ENV_YAML_FILE" ]; then
