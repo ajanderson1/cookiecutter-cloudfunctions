@@ -34,7 +34,10 @@ gcp_service_account_email = get_service_account_email(credentials_file_path)
 
 # Store the service account email in a Cookiecutter variable for use in the template.
 cookiecutter_config = '{{ cookiecutter }}'
-cookiecutter_config = json.loads(cookiecutter_config)
+print()
+print()
+print(f"the cookiecutter_config is {cookiecutter_config}")
+print()
 cookiecutter_config['gcp_service_account_email'] = gcp_service_account_email
 
 # Save the updated Cookiecutter configuration back to the file.
