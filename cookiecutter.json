@@ -5,22 +5,38 @@
     "project_name": "My Cloud Function",
     "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
     "project_short_description": "All the boilerplate you need to create a google cloud function.",
-    "trigger_type": ["HTTP", "Cloud Pub/Sub", "Cloud Storage", "Cloud Firestore"],
+    "function_trigger_type": [
+        "HTTP",
+        "Cloud Pub/Sub",
+        "Cloud Storage",
+        "Cloud Firestore"
+    ],
     "gcp_project_id": "ajanderson1",
     "gcp_region": "europe-west2",
+    "function_entry_point": "run_pipeline",
+    "function_timeout": "360",
+    "function_memory": "256MB",
     "prod_env_file": ".env.prod.yaml",
     "dev_env_file": ".env.dev",
     "build_env_file": ".env.build.yaml",
     "local_deployment_script": "deployment_scripts/deploy_local.sh",
     "deployment_script": "deployment_scripts/deploy.sh",
-    "path_to_credentials": "credentials.json",
+    "path_to_gcp_credentials": "credentials.json",
     "use_pytest": "y",
     "use_flake8": "y",
     "use_pylint": "n",
     "use_black": "y",
     "use_mypy": "n",
     "use_yamllint": "n",
+    "use_terraform": "y",
     "use_github_actions_for_ci": "y",
     "create_author_file": "y",
-    "open_source_license": ["MIT", "BSD-3-Clause", "ISC", "Apache-2.0", "GPL-3.0-only", "Not open source"]
+    "open_source_license": [
+        "MIT",
+        "BSD-3-Clause",
+        "ISC",
+        "Apache-2.0",
+        "GPL-3.0-only",
+        "Not open source"
+    ]
 }

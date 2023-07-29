@@ -145,7 +145,7 @@ def test_bake_not_open_source(cookies):
 
 
 @pytest.mark.parametrize(
-    "trigger_type, expected",
+    "function_trigger_type, expected",
     [
         (
             "HTTP",
@@ -177,9 +177,9 @@ def test_bake_not_open_source(cookies):
         ),
     ],
 )
-def test_different_triggers(trigger_type, expected, cookies):
+def test_different_triggers(function_trigger_type, expected, cookies):
     """Test project creation with different trigger types."""
-    with bake_in_temp_dir(cookies, extra_context={"trigger_type": trigger_type}) as result:
+    with bake_in_temp_dir(cookies, extra_context={"function_trigger_type": function_trigger_type}) as result:
         for file_name, phrases in expected.items():
             file_text = result.project.join(file_name).read()
             assert all(phrase in file_text for phrase in phrases)

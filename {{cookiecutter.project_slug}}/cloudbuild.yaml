@@ -16,9 +16,9 @@ steps:
       - --source=.
       - --entry-point=run_pipeline
       - --runtime=python38
-      {% if cookiecutter.trigger_type == 'HTTP' -%}- --trigger-http{% endif -%}
-      {% if cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}- --trigger-topic={{ cookiecutter.project_slug }}{% endif -%}
-      {% if (cookiecutter.trigger_type == 'Cloud Storage') or (cookiecutter.trigger_type == 'Cloud Firestore') -%}
+      {% if cookiecutter.function_trigger_type == 'HTTP' -%}- --trigger-http{% endif -%}
+      {% if cookiecutter.function_trigger_type == 'Cloud Pub/Sub' -%}- --trigger-topic={{ cookiecutter.project_slug }}{% endif -%}
+      {% if (cookiecutter.function_trigger_type == 'Cloud Storage') or (cookiecutter.function_trigger_type == 'Cloud Firestore') -%}
       - --trigger-resource=YOUR_TRIGGER_RESOURCE
       - --trigger-event=YOUR_TRIGGER_EVENT
       {% endif -%}

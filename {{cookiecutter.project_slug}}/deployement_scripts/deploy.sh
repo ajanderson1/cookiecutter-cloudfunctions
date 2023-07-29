@@ -29,15 +29,15 @@ gcloud functions deploy \
   {{cookiecutter.project_slug}} \
   --project "{{cookiecutter.gcp_project_id}}" \
   --region "{{cookiecutter.gcp_region}}" \
-  --entry-point=run_pipeline \
+  --entry-point="{{cookiecutter.function_entry_point}}" \
   --runtime=python310 \
-  --memory=1G \
-  --timeout=9m \
+  --memory="{{cookiecutter.function_memory}}" \
+  --timeout="{{cookiecutter.function_timeout}}" \
   --env-vars-file="{{cookiecutter.prod_env_file}}" \
   --allow-unauthenticated \
-  {% if cookiecutter.trigger_type == 'HTTP' -%}--trigger-http \{% endif -%}
-  {% if cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}--trigger-topic="{{ cookiecutter.project_slug }}" \{% endif -%}
-  {% if (cookiecutter.trigger_type == 'Cloud Storage') or (cookiecutter.trigger_type == 'Cloud Firestore') -%}
+  {% if cookiecutter.function_trigger_type == 'HTTP' -%}--trigger-http \{% endif -%}
+  {% if cookiecutter.function_trigger_type == 'Cloud Pub/Sub' -%}--trigger-topic="{{ cookiecutter.project_slug }}" \{% endif -%}
+  {% if (cookiecutter.function_trigger_type == 'Cloud Storage') or (cookiecutter.function_trigger_type == 'Cloud Firestore') -%}
   --trigger-resource=YOUR_TRIGGER_RESOURCE \
   --trigger-event=YOUR_TRIGGER_EVENT \
   {% endif -%}

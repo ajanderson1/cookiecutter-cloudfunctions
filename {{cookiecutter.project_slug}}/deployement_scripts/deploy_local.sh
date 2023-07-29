@@ -39,10 +39,9 @@ echo "Deploying locally using functions_framework..."
 
 echo "WARNING: This is only for HTTP triggers, not tested with Pub/Sub or Storage triggers"
 
-
 python3 -m functions_framework \
 --port 8080 \
---target run_pipeline \
+--target {{cookiecutter.function_entry_point}} \
 --signature-type http \
 --source main.py \
 --debug

@@ -1,0 +1,1 @@
+A `Terraform` module to set up the required infrastructure for `{{cookiecutter.project_slug}}` project.

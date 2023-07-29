@@ -1,8 +1,8 @@
 """Entry point for GCP Functions."""
 
-{% if cookiecutter.trigger_type == 'HTTP' -%}
+{% if cookiecutter.function_trigger_type == 'HTTP' -%}
 from typing import Any
-{% elif cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}
+{% elif cookiecutter.function_trigger_type == 'Cloud Pub/Sub' -%}
 import base64
 import json
 from typing import Any, Dict
@@ -13,7 +13,7 @@ from typing import Any, Dict
 from {{cookiecutter.project_slug}}.pipeline import main
 
 
-{% if cookiecutter.trigger_type == 'HTTP' -%}
+{% if cookiecutter.function_trigger_type == 'HTTP' -%}
 def run_pipeline(request: Any) -> str:
     """HTTP Cloud Function.
 
@@ -32,7 +32,7 @@ def run_pipeline(request: Any) -> str:
 
     # Open in request data as pipeline arguments
     return main(**message)
-{% elif cookiecutter.trigger_type == 'Cloud Pub/Sub' -%}
+{% elif cookiecutter.function_trigger_type == 'Cloud Pub/Sub' -%}
 def run_pipeline(event: Dict[str, Any], context: Context) -> None:
     """Triggered from a message written to a PubSub topic.
 
@@ -56,7 +56,7 @@ def run_pipeline(event: Dict[str, Any], context: Context) -> None:
     pubsub_message = json.loads(payload)
 
     main(**pubsub_message)
-{% elif cookiecutter.trigger_type == 'Cloud Storage' -%}
+{% elif cookiecutter.function_trigger_type == 'Cloud Storage' -%}
 def run_pipeline(event: Dict[str, Any], context: Any) -> None:
     """Triggered by a change to a Cloud Storage bucket.
 
@@ -75,7 +75,7 @@ def run_pipeline(event: Dict[str, Any], context: Any) -> None:
 
     """
     main(**event)
-{% elif cookiecutter.trigger_type == 'Cloud Firestore' -%}
+{% elif cookiecutter.function_trigger_type == 'Cloud Firestore' -%}
 def run_pipeline(event: Dict[str, Any], context: Any) -> None:
     """Triggered by a change to a Cloud Firestore document.
 

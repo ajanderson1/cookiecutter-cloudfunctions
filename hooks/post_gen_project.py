@@ -32,3 +32,6 @@ if __name__ == "__main__":
 
     if "{{ cookiecutter.use_yamllint }}" != "y":
         remove_file("yamllint-config.yml")
+
+    if "{{ cookiecutter.use_terraform }}" != "y":
+        remove_file("terraform")
