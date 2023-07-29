@@ -18,7 +18,7 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
     # Exit to cancel project
     sys.exit(1)
 
-
+print(f" this is def trunning!!!!")
 def get_service_account_email(credentials_file_path):
     with open(credentials_file_path, 'r') as json_file:
         data = json.load(json_file)
