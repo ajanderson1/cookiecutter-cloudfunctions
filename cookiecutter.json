@@ -14,6 +14,7 @@
     "gcp_project_id": "ajanderson1",
     "gcp_region": "europe-west2",
     "function_entry_point": "run_pipeline",
+    "function_description": "My Cloud Function description",
     "function_timeout": "360",
     "function_memory": "256",
     "prod_env_file": ".env.prod.yaml",
