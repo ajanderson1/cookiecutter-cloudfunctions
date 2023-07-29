@@ -16,7 +16,6 @@ if not re.match(MODULE_REGEX, MODULE_NAME):
     # Exit to cancel project
     sys.exit(1)
 
-
 import os
 import json
 from jinja2 import Template
@@ -31,16 +30,16 @@ def get_service_account_email(credentials_file_path):
         raise ValueError("Invalid credentials file. Could not find 'client_email' field.")
 
 # Path to the credentials JSON file provided by the user during Cookiecutter instantiation.
-credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
+credentials_file_path = '{{ cookiecutter.path_to_credentials_json }}'
 service_account_email = get_service_account_email(credentials_file_path)
 
-# Read the original Cookiecutter configuration as a template string.
-with open('cookiecutter.json', 'r') as config_file:
-    cookiecutter_config_template = config_file.read()
+# Read the original Cookiecutter configuration template.
+with open('cookiecutter.json', 'r') as config_template_file:
+    cookiecutter_config_template = config_template_file.read()
 
 # Render the template with the service_account_email variable.
 cookiecutter_config_rendered = Template(cookiecutter_config_template).render(service_account_email=service_account_email)
 
-# Save the rendered Cookiecutter configuration back to the file.
+# Save the rendered Cookiecutter configuration as the actual configuration file.
 with open('cookiecutter.json', 'w') as config_file:
     config_file.write(cookiecutter_config_rendered)
