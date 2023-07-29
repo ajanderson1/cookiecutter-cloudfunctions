@@ -48,19 +48,20 @@ if __name__ == "__main__":
         remove_file("terraform")
 
     
-    # Path to the credentials JSON file provided by the user during Cookiecutter instantiation.
-    credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
-    gcp_service_account_email = get_service_account_email(credentials_file_path)
+    # DOESNT WORK YET - PROLEM:  dynamic variable not possible in cookiecutter tbomk
+    # # Path to the credentials JSON file provided by the user during Cookiecutter instantiation.
+    # credentials_file_path = '{{ cookiecutter.path_to_gcp_credentials }}'
+    # gcp_service_account_email = get_service_account_email(credentials_file_path)
 
-    # modify the cookiecutter.json file to add the service account email
+    # # modify the cookiecutter.json file to add the service account email
 
-    cookiecutter_json_path = os.path.join(PROJECT_DIRECTORY, "cookiecutter.json")
-    with open(cookiecutter_json_path, 'r') as json_file:
-        data = json.load(json_file)
+    # cookiecutter_json_path = os.path.join(PROJECT_DIRECTORY, "cookiecutter.json")
+    # with open(cookiecutter_json_path, 'r') as json_file:
+    #     data = json.load(json_file)
 
-    data['gcp_service_account_email'] = gcp_service_account_email
+    # data['gcp_service_account_email'] = gcp_service_account_email
 
-    with open(cookiecutter_json_path, 'w') as json_file:
-        json.dump(data, json_file, indent=4)
+    # with open(cookiecutter_json_path, 'w') as json_file:
+    #     json.dump(data, json_file, indent=4)
         
     
