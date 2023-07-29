@@ -1,5 +1,5 @@
 resource "google_cloudfunctions_function" "function" {
-  name                  = "{{cookiecutter.function_name}}"
+  name                  = "{{cookiecutter.function_entry_point}}"
   description           = "{{cookiecutter.function_description}}"
   runtime               =  "python310"
 # Code for custom runtimes
