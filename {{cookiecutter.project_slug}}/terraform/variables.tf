@@ -14,6 +14,6 @@ variable "path_to_gcp_credentials" {
   description = "Path to your service account key JSON file"
 }
 
-variable "gcp_service_account_email" {
-  description = "GCP service account email"
-}
+# variable "gcp_service_account_email" {
+#   description = "GCP service account email"
+# }

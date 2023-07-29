@@ -9,13 +9,6 @@ resource "google_project_service" "billing" {
   service = "cloudbilling.googleapis.com"
 }
 
-# Add the "Owner" role to the service account
-resource "google_project_iam_member" "service_account_owner" {
-  project = google_project.new_project.project_id
-  role    = "roles/owner"
-  member  = "serviceAccount:${google_service_account.service_account.email}"
-}
-
 # Add a repository to Cloud Source Repositories
 resource "google_sourcerepo_repository" "repository" {
   name     = "my-repo"
