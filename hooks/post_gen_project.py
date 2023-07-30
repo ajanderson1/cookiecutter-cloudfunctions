@@ -6,9 +6,15 @@ import json
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
 
-def remove_file(filepath: str) -> None:
-    """Remove file at given filepath."""
-    os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
+def remove_file_or_dir(path: str | os.PathLike) -> None:
+    """Remove file or directory at given path."""
+    if os.path.isfile(path):
+        os.remove(path)
+    elif os.path.isdir(path):
+        os.rmdir(path)
+    else:
+        raise ValueError(f"{path} is not a valid file or directory path.")
+    
 
 def get_service_account_email(credentials_file_path):
     """Get the service account email from the credentials file."""
@@ -24,28 +30,29 @@ def get_service_account_email(credentials_file_path):
 if __name__ == "__main__":
     # AUTHORS
     if "{{ cookiecutter.create_author_file }}" != "y":
-        remove_file("AUTHORS.md")
+        remove_file_or_dir("AUTHORS.md")
 
     # LICENSE
     if "{{ cookiecutter.open_source_license }}" == "Not open source":
-        remove_file("LICENSE")
+        remove_file_or_dir("LICENSE")
 
     # GitHub Actions
     if "{{ cookiecutter.use_github_actions_for_ci }}" != "y":
-        remove_file(".github/workflows/code_quality_checks.yml")
+        remove_file_or_dir(".github/workflows/code_quality_checks.yml")
 
     # CI Checks
     if "{{ cookiecutter.use_flake8 }}" != "y":
-        remove_file(".flake8")
+        remove_file_or_dir(".flake8")
 
     if "{{ cookiecutter.use_mypy }}" != "y":
-        remove_file("mypy.ini")
+        remove_file_or_dir("mypy.ini")
 
     if "{{ cookiecutter.use_yamllint }}" != "y":
-        remove_file("yamllint-config.yml")
+        remove_file_or_dir("yamllint-config.yml")
 
     if "{{ cookiecutter.use_terraform }}" != "y":
-        remove_file("terraform")
+        # remove teh directory
+        
 
     
     # DOESNT WORK YET - PROLEM:  dynamic variable not possible in cookiecutter tbomk
