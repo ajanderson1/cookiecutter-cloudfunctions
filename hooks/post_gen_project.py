@@ -51,7 +51,7 @@ if __name__ == "__main__":
         remove_file_or_dir("yamllint-config.yml")
 
     if "{{ cookiecutter.use_terraform }}" != "y":
-        # remove teh directory
+        remove_file_or_dir("terraform")
         
 
     
