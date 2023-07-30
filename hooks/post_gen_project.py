@@ -2,6 +2,7 @@
 
 import os
 import json
+import shutil
 
 PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
 
@@ -11,7 +12,7 @@ def remove_file_or_dir(path: str | os.PathLike) -> None:
     if os.path.isfile(path):
         os.remove(path)
     elif os.path.isdir(path):
-        os.rmdir(path)
+        shutil.rmtree(path)
     else:
         raise ValueError(f"{path} is not a valid file or directory path.")
     
